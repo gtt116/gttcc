@@ -68,6 +68,7 @@ func set(stub shim.ChaincodeStubInterface, args []string) (string, error) {
 		return "", fmt.Errorf("Incorrect arguments. Expecting a key and a value")
 	}
 
+	// The bad thing happend here, we add random suffix to the value. :)
 	err := stub.PutState(args[0], []byte(args[1] + strconv.Itoa(rand.Int())))
 	if err != nil {
 		return "", fmt.Errorf("Failed to set asset: %s", args[0])
